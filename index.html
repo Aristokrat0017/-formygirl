@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HEARTS>>>></title>
+<style>
+  body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+  }
+  @keyframes beat {
+    0%, 100% { transform: scale(1); }
+    25%, 75% { transform: scale(1.1); }
+  }
+  .heart {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  animation: beat 3s infinite;
+}
+
+  .heart::before,
+  .heart::after {
+    content: '';
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+  }
+  .heart::before {
+    top: -50px;
+    left: 0;
+  }
+  .heart::after {
+    top: 0;
+    left: 50px;
+  }
+
+  .message {
+    position: absolute;
+    width: 300px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ccc;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1; /* Чтобы сообщение было выше сердечек */
+  }
+</style>
+</head>
+<body>
+
+<div class="message">
+  <h1 style="font-size: 24px; color: #333; margin: 0;">Жаным, прости меня. Давай забудем всё и не будем ссориться))))) Прости меня)))))</h1>
+  <h2 style="font-size: 24px; color: #333; margin: 0;"></h2>Жүрөк жиберсең мы пообщаемся)</h2>
+</div>
+
+<script>
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    document.body.appendChild(heart);
+
+    // Разные случайные позиции для сердечек
+    heart.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+    heart.style.top = Math.random() * (window.innerHeight - 100) + 'px';
+
+    // Удаление сердечка после некоторого времени
+    setTimeout(() => {
+      heart.remove();
+    }, 5000); // Сердце будет исчезать через 5 секунд
+  }
+
+  // Создание сердечек каждые 500 миллисекунд
+  setInterval(createHeart, 500);
+</script>
+
+</body>
+</html>
